@@ -4,6 +4,8 @@ Based on the OOP C++ course given at the University of Manchester.
 I sat this course myself in the 2019-2020 academic year.  
 I have been a demonstrator for the course since the 2021-22 academic year.  
 
+WARNING: Current students of this course are free to use these materials but should be aware that the University runs a very strict plagorism policy. Any code submitted as your own work undergoes automatic similarity checks against previously submitted. So it is strongly advised that you do not copy these solutions directly for the sake of your own degree. 
+
 ## Contents
 
 1. **Photon energy calculator**  
