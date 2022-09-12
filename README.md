@@ -1,4 +1,4 @@
-# C-Mini-Projects
+# Cplusplus Mini Projects
 A series of miniature programming projects in C++ focused around object-orientated programming.  
 Based on the OOP C++ course given at the University of Manchester.  
 I sat this course myself in the 2019-2020 academic year.  
