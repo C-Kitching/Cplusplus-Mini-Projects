@@ -6,7 +6,7 @@
 //Date Last Edited : 10/03/20
 
 // Description
-// a class for vector
+// a class for vectors
 
 // Includes
 #include<iostream>
@@ -359,7 +359,7 @@ Minkowski::Minkowski(Minkowski&& Minkowski_input) noexcept
 	Minkowski_input.vector_data = nullptr;
 }
 
-// Minkowski overridden dot product implementation
+// Minkowski dot product implementation
 double Minkowski::dot(const Minkowski& Minkowski_input) const
 {
 	// calculate (ct)^2-x^2-y^2-z^2
@@ -390,26 +390,14 @@ Minkowski Minkowski::Lorentz_boost(const vector& input_velocity) const
 	vector pos(vector_data[1], vector_data[2], vector_data[3]);  // position r
 	double gamma{ 1 / pow(1 - pow(beta.magnitude(),2),0.5) };  // gamma
 
-	Minkowski return_Minkowski;
+	// decalre temp Minkowski and calculate elements
+	Minkowski temp_Minkowski;
+	temp_Minkowski[1] = gamma * (vector_data[0] - beta.dot(pos));
+	temp_Minkowski[2] = vector_data[1] + ((gamma - 1) * ((pos.dot(beta)) / (pow(beta[1], 2))) - gamma * vector_data[0]) * beta[1];
+	temp_Minkowski[3] = vector_data[2] + ((gamma - 1) * ((pos.dot(beta)) / (pow(beta[2], 2))) - gamma * vector_data[0]) * beta[2];
+	temp_Minkowski[4] = vector_data[3] + ((gamma - 1) * ((pos.dot(beta)) / (pow(beta[3], 2))) - gamma * vector_data[0]) * beta[3];
 
-	// if any component of boost velocity is non-zero
-	if (input_velocity[1] != 0 || input_velocity[2] != 0 || input_velocity[3] != 0) {
-
-		// decalre temp Minkowski and calculate elements
-		Minkowski temp_Minkowski;
-		temp_Minkowski[1] = gamma * (vector_data[0] - beta.dot(pos));
-		temp_Minkowski[2] = vector_data[1] + ((gamma - 1) * ((pos.dot(beta)) / (pow(beta.magnitude(), 2))) - gamma * vector_data[0]) * beta[1];
-		temp_Minkowski[3] = vector_data[2] + ((gamma - 1) * ((pos.dot(beta)) / (pow(beta.magnitude(), 2))) - gamma * vector_data[0]) * beta[2];
-		temp_Minkowski[4] = vector_data[3] + ((gamma - 1) * ((pos.dot(beta)) / (pow(beta.magnitude(), 2))) - gamma * vector_data[0]) * beta[3];
-
-		return_Minkowski = std::move(temp_Minkowski);
-	}
-	// if all componenets of boost velicty is zero
-	else {
-		for (int i{ 1 }; i <= size; i++) return_Minkowski[i] = vector_data[i - 1];
-	}
-
-	return return_Minkowski;
+	return temp_Minkowski;
 }
 
 // Minkowski friend function to overload << (insertion operator)
@@ -491,6 +479,7 @@ public:
 // particle parameterized constructor implementation
 particle::particle(double m, vector& input_vector_3, Minkowski& input_vector_4) : mass{ 0 }, vector_3{ vector(3) }, vector_4{ Minkowski() }
 {
+
 	// check mass is greater than zero and set it
 	if (m > 0) mass = m;
 	else std::cerr << "Error: mass cannot be less than 0" << std::endl;
@@ -585,13 +574,13 @@ int main() {
 
 	// demonstrate copy assignment
 	std::cout << "Demonstrate vector copy assignment" << std::endl;
-	std::cout << "Parameterized construction of d1 and set values" << std::endl;
+	std::cout << "Parameterized construction of c1 and set values" << std::endl;
 	vector d1(1, -2, 3);
 	std::cout << "d1 = " << d1;
-	std::cout << "Parameterized contruction of d2" << std::endl;
+	std::cout << "Parameterized contruction of d1" << std::endl;
 	vector d2(3);
 	std::cout << "d2 = " << d2;
-	std::cout << "Copy d1 to d2 by assignment" << std::endl;
+	std::cout << "Copy c1 to d2 by assignment" << std::endl;
 	d2 = d1;
 	std::cout << "d2 = " << d2;
 	std::cout << "Deep copy so d1 unchanged" << std::endl;
@@ -765,10 +754,10 @@ int main() {
 
 	// Demonstrate Minkowski boosted 4-vector
 	std::cout << "Demonstrate Minkowski boosted 4-vector" << std::endl;
-	vector velocity(2.4e7, 0, 1e7);
+	vector velocity(200000, 200000, 200000);
 	Minkowski unboosted(10, 3, 7, 4);
 	Minkowski boosted{ unboosted.Lorentz_boost(velocity) };
-	std::cout << "Lorentz boost of," << "\n" << "unboosted = " << unboosted << "by velocity," << "\nv = "
+	std::cout << "Lorentze boost of," << "\n" << "unboosted = " << unboosted << "by velocity," << "\nv = "
 		<< velocity << "is, \nboosted = " << boosted << std::endl;
 
 
