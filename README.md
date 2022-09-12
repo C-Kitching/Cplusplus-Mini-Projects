@@ -20,7 +20,7 @@ The user can also select a year and a sort method, courses will be printed out a
 Demonstration of classes in C++.  
 Classifying galaxies with classification, redshift, total mass and stellar mass fraction.  
 5. **A class for complex numbers**   
-Description  
+A demonstration of classes applied to complex numbers.  
 6. **A class for matricies**  
 Description  
 7. **A class for vectors**  
