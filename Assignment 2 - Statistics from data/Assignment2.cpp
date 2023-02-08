@@ -116,8 +116,8 @@ int main() {
 }  // end of main program
 
 // Function to calculate mean
-double calc_mean(const double x[], const int& size) {
-
+double calc_mean(const double x[], const int& size) 
+{
 	double mean; // declare mean to be returned
 	double summation{ 0 };  // declare and initalise sum to 0
 
@@ -128,8 +128,8 @@ double calc_mean(const double x[], const int& size) {
 }
 
 // Function to calculate standard deviation
-double calc_std_dev(const double x[], const double& mean, const int& size) {
-
+double calc_std_dev(const double x[], const double& mean, const int& size) 
+{
 	double std_dev;  // declare standard deviation to be returned
 	double summation{ 0 };  // decalre and initialise summation to 0
 
