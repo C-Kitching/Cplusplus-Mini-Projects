@@ -91,12 +91,13 @@ void galaxy::print_data() {
 // Decalre functions
 void print_galaxy_data(std::vector<galaxy> &galaxy_data);
 
-
 // Begin main program
 int main() {
 
 	// example using default constructor
 	galaxy ghost_galaxy;
+
+
 
 	// example using parameterised constructor
 	galaxy real_galaxy_1("E0", 5.6, 1.5e9, 0.02);

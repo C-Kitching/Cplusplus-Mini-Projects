@@ -207,9 +207,9 @@ int main() {
 	courselist_datafile_2.close();  // close data file
 
 	// declare vector iterators
-	std::vector <std::string>::iterator data_vector_begin{ data_course_info.begin() };
-	std::vector <std::string>::iterator data_vector_end{ data_course_info.end() };
-	std::vector <std::string>::iterator data_vector_iterator;
+	std::vector<std::string>::iterator data_vector_begin{ data_course_info.begin() };
+	std::vector<std::string>::iterator data_vector_end{ data_course_info.end() };
+	std::vector<std::string>::iterator data_vector_iterator;
 
 	// sort courses by code
 	if (sort_option == "code") {
